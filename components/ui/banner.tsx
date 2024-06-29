@@ -1,8 +1,9 @@
 interface BannerProps {
   backgroundImageUrl?: string;
+  children: React.ReactNode;
 }
 
-function Banner({ backgroundImageUrl }: BannerProps) {
+function Banner({ backgroundImageUrl, children }: BannerProps) {
   const backgroundImage = { backgroundImage: `url(${backgroundImageUrl})` };
 
   return (
@@ -14,11 +15,7 @@ function Banner({ backgroundImageUrl }: BannerProps) {
       <div className="absolute z-10 w-full h-full top-0 left-0">
         <div className=" mx-auto w-full max-w-screen-xl px-4 py-32 lg:flex h-full  lg:items-center">
           <div className="mx-auto max-w-3xl text-center">
-            <h1 className="text-white">
-              Understand User Flow.
-              <span className="sm:block"> Increase Conversion. </span>
-            </h1>
-
+            {children}
             <p className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed">
               Lorem ipsum dolor sit amet consectetur, adipisicing elit. Nesciunt
               illo tenetur fuga ducimus numquam ea!

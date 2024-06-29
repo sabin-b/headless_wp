@@ -8,7 +8,6 @@ async function Homepage() {
   return (
     <main>
       <BlockRenderer blocks={blocks} />
-      <div>{JSON.stringify(blocks)}</div>
     </main>
   );
 }
