@@ -1,21 +1,16 @@
-import client from "@/config/client";
-import { gql } from "@apollo/client";
+import { getHomepageBlocks } from "@/actions/hompage-actions";
+import BlockRenderer from "@/components/blockrenderer/block";
+import { generateBlocksIds } from "@/lib/helpers";
 
 async function Homepage() {
-  const { data } = await client.query({
-    query: gql`
-      query homepage {
-        nodeByUri(uri: "/") {
-          ... on Page {
-            id
-            blocks(postTemplate: false)
-          }
-        }
-      }
-    `,
-  });
-  console.log(data);
-  return <div>home page</div>;
+  const data = await getHomepageBlocks();
+  const blocks = await generateBlocksIds(data);
+  return (
+    <main>
+      <BlockRenderer blocks={blocks} />
+      <div>{JSON.stringify(blocks)}</div>
+    </main>
+  );
 }
 
 export default Homepage;
