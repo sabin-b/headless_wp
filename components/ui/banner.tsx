@@ -9,7 +9,7 @@ function Banner({ backgroundImageUrl, children }: BannerProps) {
   return (
     <section
       style={backgroundImage}
-      className="relative bg-gray-900 bg-no-repeat min-h-[400px] h-auto md:min-h-screen bg-cover text-white"
+      className="relative bg-gray-900 z-[0] bg-no-repeat min-h-[400px] h-auto md:min-h-[calc(100vh-80px)] bg-cover text-white"
     >
       <div className="absolute z-[1] w-full h-full top-0 left-0 bg-slate-700/50"></div>
       <div className="absolute z-10 w-full h-full top-0 left-0">

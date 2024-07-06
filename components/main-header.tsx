@@ -1,27 +1,22 @@
 "use client";
+import { cn } from "@/lib/utils";
+import Link from "next/link";
 import { useState } from "react";
-import ListItem from "./ui/navlink";
+import NavigationMenus, { NavigationMenuProps } from "./menus";
+import { Button } from "./ui/button";
+import SiteLogo from "./ui/site-logo";
 
-const Navbar = () => {
+const Navbar = ({ menus, ctaprops, siteLogo }: NavigationMenuProps) => {
   const [open, setOpen] = useState(false);
 
   return (
-    <header className={`flex absolute top-0 left-0 w-full z-20 items-center bg-white dark:bg-dark`}>
+    <header
+      className={`flex  left-0 w-full z-20 items-center bg-blue-100 dark:bg-dark`}
+    >
       <div className="container">
         <div className="relative -mx-4 flex items-center justify-between">
           <div className="w-60 max-w-full px-4">
-            <a href="/#" className="block w-full py-5">
-              <img
-                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-primary.svg"
-                alt="logo"
-                className="dark:hidden"
-              />
-              <img
-                src="https://cdn.tailgrids.com/2.0/image/assets/images/logo/logo-white.svg"
-                alt="logo"
-                className="hidden dark:block"
-              />
-            </a>
+            <SiteLogo altText={siteLogo?.altText!} url={siteLogo?.sourceUrl!} />
           </div>
           <div className="flex w-full items-center justify-end px-4">
             <div>
@@ -36,21 +31,27 @@ const Navbar = () => {
                 <span className="relative my-[6px] block h-[2px] w-[30px] bg-black dark:bg-white"></span>
                 <span className="relative my-[6px] block h-[2px] w-[30px] bg-black dark:bg-white"></span>
               </button>
-              <nav
-                // :className="!navbarOpen && 'hidden' "
-                id="navbarCollapse"
-                className={`absolute z-30 right-4 top-full w-full max-w-[250px] rounded-lg bg-white px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:dark:bg-transparent ${
-                  !open && "hidden"
-                } `}
-              >
-                <ul className="block lg:flex">
-                  <ListItem NavLink="/#">Home</ListItem>
-                  <ListItem NavLink="/#">Payment</ListItem>
-                  <ListItem NavLink="/#">About</ListItem>
-                  <ListItem NavLink="/#">Blog</ListItem>
-                </ul>
-              </nav>
+              <div className="md:relative w-full ">
+                <NavigationMenus
+                  classNames={cn(
+                    "absolute z-30 bg-blue-100 right-4 top-full w-full rounded-lg  px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:dark:bg-transparent",
+                    !open && "hidden"
+                  )}
+                  menus={menus}
+                />
+              </div>
             </div>
+            <Button
+              className="bg-blue-500 hidden hover:bg-blue-600 md:flex"
+              asChild
+            >
+              <Link
+                className="capitalize text-lg "
+                href={ctaprops?.destination.uri!}
+              >
+                {ctaprops?.label}{" "}
+              </Link>
+            </Button>
           </div>
         </div>
       </div>

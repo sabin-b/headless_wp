@@ -1,5 +1,5 @@
 function GuideTosellingpage() {
-  return <div>gfff</div>;
+  return <div>guide to selling</div>;
 }
 
 export default GuideTosellingpage;

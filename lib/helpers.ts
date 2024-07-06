@@ -41,8 +41,19 @@ export function relativeToAbsoluteurl(text: string): TrustedHTML {
  * get main menus
  * @returns array of menus
  */
-
-export async function getMainMenus() {
+export interface getMainMenusProps {
+  id: string;
+  label: string;
+  destination: string;
+  subMenuItems:
+    | {
+        id: string;
+        label: string;
+        destination: string;
+      }[]
+    | [];
+}
+export async function getMainMenus(): Promise<getMainMenusProps[]> {
   const menuitems: { [key: string]: any }[] = await getMenus();
   return menuitems.map((item) => {
     return {
