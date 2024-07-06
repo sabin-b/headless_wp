@@ -1,11 +1,16 @@
 import Banner from "../ui/banner";
 import Heading from "../ui/heading";
+import Paragraph from "../ui/paragraph";
 
-type getAssignIdsProps = { [key: string]: any }[];
+// type getAssignIdsProps = { [key: string]: any }[];
 
-function BlockRenderer({ blocks }: { blocks: getAssignIdsProps }) {
+interface getAssignIdsProps {
+  blocks: { [key: string]: any }[];
+}
+
+function BlockRenderer({ blocks }: getAssignIdsProps) {
   return blocks.map((block) => {
-    console.log(block);
+    // console.log(block);
     switch (block.name) {
       case "core/heading":
         return (
@@ -16,6 +21,8 @@ function BlockRenderer({ blocks }: { blocks: getAssignIdsProps }) {
             level={block.attributes.level}
           />
         );
+      case "core/paragraph":
+        return <Paragraph content={block.attributes.content} />;
       case "core/cover":
         return (
           <Banner key={block.id} backgroundImageUrl={block.attributes.url}>

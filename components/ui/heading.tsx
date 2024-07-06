@@ -7,6 +7,7 @@ interface HeadingProps {
 }
 
 function Heading({ content, level, textAlign }: HeadingProps) {
+  // console.log(level,content)
   return (
     <div>
       {level === 1 && (
@@ -19,6 +20,17 @@ function Heading({ content, level, textAlign }: HeadingProps) {
         >
           {content}
         </h1>
+      )}
+       {level === 2 && (
+        <h2
+          className={cn("", {
+            "text-center": textAlign === "center",
+            "text-left": textAlign === "left",
+            "text-right": textAlign === "right",
+          })}
+        >
+          {content}
+        </h2>
       )}
     </div>
   );

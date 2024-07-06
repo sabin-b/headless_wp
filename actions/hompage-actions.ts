@@ -6,7 +6,7 @@ import { gql } from "@apollo/client";
 export async function getHomepageBlocks(): Promise<{}[]> {
   const { data } = await client.query({
     query: gql`
-      query homepage {
+      query NewQuery {
         nodeByUri(uri: "/") {
           ... on Page {
             id
