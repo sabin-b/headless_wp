@@ -7,7 +7,7 @@ interface paragraphProps {
 function Paragraph({ content }: paragraphProps) {
   return (
     <p
-      className="mx-auto mt-4 max-w-xl sm:text-xl/relaxed"
+      className="mx-auto m-0 mt-4 p-0  sm:text-xl/relaxed"
       dangerouslySetInnerHTML={{
         __html: relativeToAbsoluteurl(content.toString()),
       }}

@@ -1,11 +1,12 @@
 import { getCtaProperties } from "@/actions/cta-action";
+import { getSiteLogo } from "@/actions/site-logo";
+import MainFooter from "@/components/main-footer";
 import Navbar from "@/components/main-header";
 import { getMainMenus } from "@/lib/helpers";
 import { cn } from "@/lib/utils";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-import { getSiteLogo } from "@/actions/site-logo";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -32,9 +33,12 @@ export default async function RootLayout({
   // console.log(menus);
   return (
     <html lang="en">
-      <body className={cn("font-sans antialiased", inter.variable)}>
+      <body
+        className={cn("font-sans antialiased flex flex-col h-full min-h-screen", inter.variable)}
+      >
         <Navbar siteLogo={siteLogo} ctaprops={ctaProps} menus={menus} />
-        {children}
+        <div className="flex-1">{children}</div>
+        <MainFooter />
       </body>
     </html>
   );

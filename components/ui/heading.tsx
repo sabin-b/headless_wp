@@ -23,7 +23,7 @@ function Heading({ content, level, textAlign }: HeadingProps) {
       )}
        {level === 2 && (
         <h2
-          className={cn("", {
+          className={cn("mt-10 scroll-m-20  text-3xl font-semibold tracking-tight transition-colors first:mt-0", {
             "text-center": textAlign === "center",
             "text-left": textAlign === "left",
             "text-right": textAlign === "right",

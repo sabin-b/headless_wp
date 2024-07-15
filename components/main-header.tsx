@@ -1,6 +1,7 @@
 "use client";
 import { cn } from "@/lib/utils";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState } from "react";
 import NavigationMenus, { NavigationMenuProps } from "./menus";
 import { Button } from "./ui/button";
@@ -8,10 +9,14 @@ import SiteLogo from "./ui/site-logo";
 
 const Navbar = ({ menus, ctaprops, siteLogo }: NavigationMenuProps) => {
   const [open, setOpen] = useState(false);
-
+  const pathname = usePathname();
+  // console.log(pathname);
   return (
     <header
-      className={`flex  left-0 w-full z-20 items-center bg-blue-100 dark:bg-dark`}
+      className={cn(
+        "flex left-0 w-full z-20 items-center bg-blue-50 dark:bg-dark",
+        pathname === "/" ? "absolute" : ""
+      )}
     >
       <div className="container">
         <div className="relative -mx-4 flex items-center justify-between">
@@ -34,7 +39,7 @@ const Navbar = ({ menus, ctaprops, siteLogo }: NavigationMenuProps) => {
               <div className="md:relative w-full ">
                 <NavigationMenus
                   classNames={cn(
-                    "absolute z-30 bg-blue-100 right-4 top-full w-full rounded-lg  px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:dark:bg-transparent",
+                    "absolute z-30 sm:bg-blue-10  right-4 top-full w-full rounded-lg  px-6 py-5 shadow dark:bg-dark-2 lg:static lg:block lg:w-full lg:max-w-full lg:shadow-none lg:dark:bg-transparent",
                     !open && "hidden"
                   )}
                   menus={menus}
