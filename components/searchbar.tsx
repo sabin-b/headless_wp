@@ -1,3 +1,5 @@
+"use client";
+
 import { searchFilter } from "@/actions/search";
 import { Button } from "./ui/button";
 
