@@ -1,9 +1,45 @@
 import { getpostProperties } from "@/actions/property-post";
 import PropertiesList from "@/components/properties-list";
+import SearchBar from "@/components/searchbar";
+import { ApolloError } from "@apollo/client";
 
-async function AllPropertiesPage() {
-  const properties = await getpostProperties();
-  // console.log(properties);
+interface AllPropertiesPageprops {
+  searchParams: {
+    search: string;
+  };
+}
+
+interface RecieveData {
+  data: {
+    slug: string;
+    title: string;
+    [key: string]: unknown;
+    propertyfeatures: {
+      bathrooms: number;
+      bedrooms: number;
+      hasparking: boolean | null;
+      petfriendly: boolean | null;
+      price: number;
+      [key: string]: unknown;
+    };
+    featuredImage: {
+      [key: string]: unknown;
+      node: {
+        [key: string]: unknown;
+        sourceUrl: string;
+      };
+    };
+  }[];
+  loading: boolean;
+  error: ApolloError | undefined;
+}
+
+async function AllPropertiesPage({
+  searchParams: { search },
+}: AllPropertiesPageprops) {
+  const response = await getpostProperties(search);
+  const { data, error, loading } = response as RecieveData;
+  // console.log(data);
   return (
     <section className="text-gray-600 body-font">
       <section className="text-gray-600 body-font">
@@ -21,8 +57,12 @@ async function AllPropertiesPage() {
               spacious family home, we have the perfect property for you.
             </p>
           </div>
+          <h2 className="sm:text-3xl text-2xl font-medium title-font mb-2 text-gray-900">
+            Search
+          </h2>
+          <SearchBar />
           {/* listing area */}
-          <PropertiesList properties={properties} />
+          <PropertiesList properties={data} />
         </div>
       </section>
       ;
