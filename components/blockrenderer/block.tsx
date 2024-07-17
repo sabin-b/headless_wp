@@ -32,7 +32,6 @@ function BlockRenderer({ blocks }: getAssignIdsProps) {
             <BlockRenderer blocks={block.innerBlocks} />
           </Banner>
         );
-
       case "core/button":
         return (
           <ButtonElement
